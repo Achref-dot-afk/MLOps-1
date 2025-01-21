@@ -61,7 +61,7 @@ pipeline {
                     // Start FastAPI server and wait for it to be ready
                     sh ''' 
                         . venv/bin/activate
-                        python3 main.py 
+                        python3 main.py &
                         sleep 10  
                     '''
                 }
