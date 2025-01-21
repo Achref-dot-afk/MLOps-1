@@ -60,7 +60,10 @@ pipeline {
             steps {
                 script {
                     // Start FastAPI server in the background
-                    sh 'uvicorn main:app --host 127.0.0.1 --port 9000'
+                    sh ''' 
+                        . venv/bin/activate
+                        nohup uvicorn main:app --host
+                        '''
                     sleep time: 10, unit: 'SECONDS'
                 }
             }
