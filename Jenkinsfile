@@ -62,9 +62,8 @@ pipeline {
                     // Start FastAPI server in the background
                     sh ''' 
                         . venv/bin/activate
-                        python main.py
+                        python main.py &
                         '''
-                    sleep time: 10, unit: 'SECONDS'
                 }
             }
         }
