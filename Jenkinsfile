@@ -60,7 +60,7 @@ pipeline {
             steps {
                 script {
                     // Start FastAPI server in the background
-                    sh 'uvicorn main:app --host 127.0.0.1 --port 9000'
+                    sh 'uvicorn main:model_serving --host 127.0.0.1 --port 9000'
                     sleep time: 10, unit: 'SECONDS'
                 }
             }
