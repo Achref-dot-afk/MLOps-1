@@ -62,7 +62,7 @@ pipeline {
                     sh ''' 
                         . venv/bin/activate
                         python3 main.py & 
-                        sleep 10  // Give server time to start
+                        sleep 10  
                     '''
                 }
             }
