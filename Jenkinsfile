@@ -11,7 +11,7 @@ pipeline {
             steps {
                 script {
                     sh '''
-                        apt update && apt install uvicorn
+                        apt update && apt install uvicorn && apt install joblib
                         python3 -m venv venv
                         . venv/bin/activate
                         pip install -r requirements.txt
