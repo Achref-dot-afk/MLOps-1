@@ -59,8 +59,7 @@ pipeline {
             steps {
                 script {
                     // Start FastAPI server in the background
-                    sh 'start /B python3 model_serving.py'
-                    // Wait for the server to start
+                    sh 'uvicorn main:app --host 127.0.0.1 --port 9000'
                     sleep time: 10, unit: 'SECONDS'
                 }
             }
