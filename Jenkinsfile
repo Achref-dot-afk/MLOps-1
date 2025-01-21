@@ -40,7 +40,6 @@ pipeline {
                         . venv/bin/activate
                         python3 model_training.py
                     '''
-                    
                 }
             }
         }
@@ -59,11 +58,12 @@ pipeline {
         stage('Serve Model') {
             steps {
                 script {
-                    // Start FastAPI server in the background
+                    // Start FastAPI server and wait for it to be ready
                     sh ''' 
                         . venv/bin/activate
-                        python3 main.py &
-                        '''
+                        python3 main.py & 
+                        sleep 10  // Give server time to start
+                    '''
                 }
             }
         }
