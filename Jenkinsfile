@@ -62,7 +62,7 @@ pipeline {
                     // Start FastAPI server in the background
                     sh ''' 
                         . venv/bin/activate
-                        python main.py &
+                        python3 main.py &
                         '''
                 }
             }
