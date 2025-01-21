@@ -10,8 +10,11 @@ pipeline {
         stage('Initialize') {
             steps {
                 script {
-                    // Install necessary Python packages
-                    sh "pip install -r requirements.txt"
+                    sh '''
+                        python -m venv venv
+                        . .venv/bin/activate
+                        pip install -r requirements.txt
+                    '''
                 }
             }
         }
