@@ -11,7 +11,7 @@ pipeline {
             steps {
                 script {
                     sh '''
-                        apt update && apt install uvicorn && apt install joblib
+                        apt update && apt install uvicorn
                         python3 -m venv venv
                         . venv/bin/activate
                         pip install -r requirements.txt
@@ -62,7 +62,7 @@ pipeline {
                     // Start FastAPI server in the background
                     sh ''' 
                         . venv/bin/activate
-                        nohup uvicorn main:app --host
+                        python main.py
                         '''
                     sleep time: 10, unit: 'SECONDS'
                 }
