@@ -11,7 +11,7 @@ pipeline {
             steps {
                 script {
                     sh '''
-                        python -m venv venv
+                        python3 -m venv venv
                         . .venv/bin/activate
                         pip install -r requirements.txt
                     '''
@@ -23,7 +23,7 @@ pipeline {
             steps {
                 script {
                     // Run data loading script
-                    sh "python data_loading.py"
+                    sh "python3 data_loading.py"
                 }
             }
         }
@@ -32,7 +32,7 @@ pipeline {
             steps {
                 script {
                     // Run model training script
-                    sh "python model_training.py"
+                    sh "python3 model_training.py"
                 }
             }
         }
@@ -41,7 +41,7 @@ pipeline {
             steps {
                 script {
                     // Run model evaluation script
-                    sh "python model_evaluation.py"
+                    sh "python3 model_evaluation.py"
                 }
             }
         }
@@ -50,7 +50,7 @@ pipeline {
             steps {
                 script {
                     // Start FastAPI server in the background
-                    sh 'start /B python model_serving.py'
+                    sh 'start /B python3 model_serving.py'
                     // Wait for the server to start
                     sleep time: 10, unit: 'SECONDS'
                 }
