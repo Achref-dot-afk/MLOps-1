@@ -73,8 +73,8 @@ pipeline {
                 script {
                     // Test the server with sample values
                     sh '''
-                        curl -X POST "http://127.0.0.1:9000/predict" ^
-                        -H "Content-Type: application/json" ^
+                        curl -X POST "http://127.0.0.1:9000/predict" 
+                        -H "Content-Type: application/json" 
                         -d "{\\"features\\": [13.2, 2.77, 2.51, 18.5, 103.0, 1.15, 2.61, 0.26, 1.46, 3.0, 1.05, 3.33, 820.0]}"
                     '''
                 }
