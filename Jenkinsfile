@@ -2,6 +2,11 @@ pipeline {
     agent any
 
     stages {
+        stage('checkout') {
+            steps {
+                checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'git', url: 'https://github.com/Achref-dot-afk/MLOps-1.git']])
+            }
+        }
         stage('Initialize') {
             steps {
                 script {
