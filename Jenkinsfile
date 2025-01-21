@@ -23,7 +23,10 @@ pipeline {
             steps {
                 script {
                     // Run data loading script
-                    sh "python3 data_loading.py"
+                    sh '''
+                          . venv/bin/activate 
+                          python3 data_loading.py
+                    '''
                 }
             }
         }
@@ -32,7 +35,11 @@ pipeline {
             steps {
                 script {
                     // Run model training script
-                    sh "python3 model_training.py"
+                    sh ''' 
+                        . venv/bin/activate
+                        python3 model_training.py
+                    '''
+                    
                 }
             }
         }
@@ -40,8 +47,10 @@ pipeline {
         stage('Evaluate Model') {
             steps {
                 script {
-                    // Run model evaluation script
-                    sh "python3 model_evaluation.py"
+                    sh '''
+                        . venv/bin/activate
+                        python3 model_evaluation.py
+                    '''
                 }
             }
         }
