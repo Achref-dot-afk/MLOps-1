@@ -1,0 +1,11 @@
+groups:
+  - name: model_monitoring_rules
+    rules:
+      - alert: ModelAccuracyLow
+        expr: model_accuracy < 0.5
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Model accuracy is below threshold"
+          description: "The model accuracy has fallen to {{ $value }} which is below the threshold of 0.5."

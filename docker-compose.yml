@@ -1,0 +1,39 @@
+version: "3.8"
+
+volumes:
+  jenkins_data:
+    external: true
+services:
+  customjenkins:
+    build: ./jenkins
+    ports:
+      - "8080:8080"
+    volumes:
+      - jenkins_data:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+    container_name: customjenkins
+  prometheus:
+    image: prom/prometheus:v2.30.0
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus/:/etc/prometheus/
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+    container_name: prometheus
+  alertmanager:
+    image: prom/alertmanager:v0.23.0
+    ports:
+      - "9093:9093"
+    volumes:
+      - ./monitoring/alertmanager/:/etc/alertmanager/
+    command: 
+      - "--config.file=/etc/alertmanager/alertmanager.yml"
+    container_name: alertmanager
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    depends_on:
+      - prometheus
+    container_name: grafana
