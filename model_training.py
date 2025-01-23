@@ -15,6 +15,5 @@ def save_model(model, file_path):
 
 if __name__ == "__main__":
     X_train, X_test, y_train, y_test = load_preprocessed_data("preprocessed_data.pkl")
-
     model = train_model(X_train, y_train)
     save_model(model, "model.pkl")

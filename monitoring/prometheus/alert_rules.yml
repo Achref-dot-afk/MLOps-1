@@ -8,4 +8,31 @@ groups:
           severity: critical
         annotations:
           summary: "Model accuracy is below threshold"
-          description: "The model accuracy has fallen to {{ $value }} which is below the threshold of 0.5."
+          description: "The model accuracy has fallen to {{ $value }} which is below the threshold of 0.5%."
+
+      - alert: ModelPrecisionLow
+        expr: model_precision < 0.5
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Model precision is below threshold"
+          description: "The model precision has fallen to {{ $value }} which is below the threshold of 0.5%."
+
+      - alert: ModelRecallLow
+        expr: model_recall < 0.5
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Model recall is below threshold"
+          description: "The model recall has fallen to {{ $value }} which is below the threshold of 0.5%."
+
+      - alert: ModelF1ScoreLow
+        expr: model_f1_score < 0.5
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Model F1 Score is below threshold"
+          description: "The model F1 score has fallen to {{ $value }} which is below the threshold of 0.5%."
